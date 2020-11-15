@@ -1,0 +1,97 @@
+@mixin bordered-button($width, $border-width: 5px) {    
+    //Credits: Laica
+    min-width: $width;
+    height: $width / 2;
+    border: solid $border-width transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border-radius: $width / 4;
+    .dark-theme.gradient1 &{
+        background-image: linear-gradient($dark-theme-bg, $dark-theme-bg), $gradient1;
+    }
+    .dark-theme.gradient2 &{
+        background-image: linear-gradient($dark-theme-bg, $dark-theme-bg), $gradient2;
+    }
+    .dark-theme.gradient3 &{
+        background-image: linear-gradient($dark-theme-bg, $dark-theme-bg), $gradient3;
+    }
+    .light-theme.gradient1 &{
+        background-image: linear-gradient($white-theme-bg, $white-theme-bg), $gradient1;
+    }
+    .light-theme.gradient2 &{
+        background-image: linear-gradient($white-theme-bg, $white-theme-bg), $gradient2;
+    }
+    .light-theme.gradient3 &{
+        background-image: linear-gradient($white-theme-bg, $white-theme-bg), $gradient3;
+    }
+    .inner-text{
+        @include text-gradient;
+        font-weight: bold;
+    }
+}
+@mixin text-gradient {
+    .gradient1 &{
+        background: $gradient1;
+        background-clip: text;
+    }
+    .gradient2 &{
+        background: $gradient2;
+        background-clip: text;
+    }
+    .gradient3 &{
+        background: $gradient3;
+        background-clip: text;
+    }
+    color: transparent;
+    width: max-content;
+}
+@mixin field{    
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: $white-theme-field;
+    .dark-theme &{
+        background-color: $dark-theme-field;
+    }
+    filter: drop-shadow(2px 2px 2px #00000010);
+}
+@mixin gradient($property){
+    .gradient1 &{
+        #{$property}: $gradient1;
+    }
+    .gradient2 &{
+        #{$property}: $gradient2;
+    }
+    .gradient3 &{
+        #{$property}: $gradient3;
+    }
+}
+@mixin svg-gradient($property: stroke) {    
+    .gradient1 &{
+        #{$property}: url('/assets/img/gradients.svg#gradient1');
+    }
+    .gradient2 &{
+        #{$property}: url('/assets/img/gradients.svg#gradient2');
+    }
+    .gradient3 &{
+        #{$property}: url('/assets/img/gradients.svg#gradient3');
+    }
+}
+@mixin selection-indicator($selector-name){
+    &::before{
+        content: " ";
+        float: left;
+        height: inherit;
+        width: 0;
+        background-origin: border-box;
+        background-clip: border-box;
+        box-sizing: border-box;
+        border: solid 3px transparent;
+        border-radius: 4px;
+    }
+    &#{$selector-name}::before{
+        @include gradient(background-image);
+    }
+    &:hover::before{
+        background-image: linear-gradient($text2 0%, $text2 100%);
+    }
+}

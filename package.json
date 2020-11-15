@@ -1,0 +1,20 @@
+{
+  "name": "gdcollabmanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass scss/main.scss assets/style.css --watch",
+    "start": "sass scss/main.scss assets/style.css & node index.js",
+    "debug": "node --inspect-brk=9999 index.js"
+  },
+  "author": "Syudagye",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "pug": "^3.0.0",
+    "sass": "^1.29.0"
+  }
+}

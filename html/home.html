@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/assets/scripts/app.js"></script>
+    <title>GD Collab Manager</title>
+</head>
+<body class="light-theme gradient1">
+    <div id="main-page">
+
+        <header>
+            <a class="header-home-button" href="/">
+                <div class="header-icon" id="header-icon" svg-data="/assets/img/logo.svg"></div>
+                <!--<img class="header-icon" id="header-icon" src="/assets/img/logo_gradient.svg" alt="GDCM">-->
+            </a>
+            <ul class="nav-tabs">
+                <li class="nav-tab"><a href="/features">Features</a></li>
+                <li class="nav-tab"><a href="/changelog">Changelog</a></li>
+                <li class="nav-tab"><a href="/support">Support</a></li>
+            </ul>
+            <div class="account">
+                <button class="loggin-button">
+                    <span class="inner-text">Log In</span>
+                </button>
+            </div>
+            <div id="open-settings">
+                <div class="settings" svg-data="/assets/img/settings_button.svg"></div>
+            </div>
+        </header>
+    
+        <main>
+            <div class="bg-image" svg-data="/assets/img/logo.svg"></div>
+            <div class="home-titles">
+                <h1>GD Collab Manager</h1>
+                <h2>Manage your collab like never before</h2>
+            </div>
+            <div class="start-zone">
+                <button class="start-button">
+                    <span class="inner-text">Start</span>
+                </button>
+                <a href="/" class="link" id="learn-more-button">Learn More</a>
+            </div>
+        </main>
+
+    </div>
+
+    <div id="popups">
+        
+        <div id="settings-popup" class="popup hidden">
+            <div class="settings-popup-topbar">
+                <span>Settings</span>
+                <div id="settings-close" svg-data="/assets/img/settings_button.svg"></div>
+            </div>
+            <ul class="settings-list">
+                <li class="setting-tab">
+                    <span>Dark theme</span>
+                    <div id="dark-theme-switch" class="switch">
+                        <div class="inner-switch"></div>
+                    </div>
+                </li>
+                <li class="setting-tab">
+                    <span>Gradient</span>
+                    <div id="used-gradient" class="gradient">
+                        <div id="gradient-selection" class="hidden">
+                            <div id="gradient1" class="gradient selected-gradient"></div>
+                            <div id="gradient2" class="gradient"></div>
+                            <div id="gradient3" class="gradient"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="setting-tab">
+                    <span>Language</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+@import './abstract/variable.scss';
+@import './abstract/mixins.scss';
+
+
+//general style
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: $main-font;
+}
+html, body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.light-theme{
+    background-color: $white-theme-bg;
+}
+.dark-theme{
+    background-color: $dark-theme-bg;
+}
+.hidden{
+    visibility: hidden;
+}
+.blurred{
+    filter: blur(5px);
+    transition: filter .2s linear;
+}
+#main-page{    
+    transition: filter .2s linear;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+//components style
+
+//layout style
+@import './layout/header.scss';
+@import './layout/main_content.scss';
+
+//pages style
+@import './pages/index.scss';
+@import './pages/dashboard.scss';

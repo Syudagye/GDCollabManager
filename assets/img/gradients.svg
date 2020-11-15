@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="gradient1" x2="100%" y2="100%" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#D52600"/>
+            <stop offset="100%" stop-color="#A400F1"/>
+        </linearGradient>
+        <linearGradient id="gradient2" x2="100%" y2="100%" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00bad9"/>
+            <stop offset="100%" stop-color="#08f100"/>
+        </linearGradient>
+        <linearGradient id="gradient3" x2="100%" y2="100%" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#d500d5"/>
+            <stop offset="100%" stop-color="#0099f1"/>
+        </linearGradient>
+        <linearGradient id="bg-object-gradient" x2="100%" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00000000"/>
+            <stop offset="100%" stop-color="#00000033"/>
+        </linearGradient>
+    </defs>
+</svg>

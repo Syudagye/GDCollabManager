@@ -1,0 +1,49 @@
+header{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    margin: 10px 20px;
+}
+.header-icon{
+    height: 50px;
+    width: 50px;
+}
+.nav-tabs{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+.nav-tab{
+    margin: auto;
+    margin-left: 40px;
+    text-decoration: none;
+    a{
+        color: $text-links;
+    }
+}
+.account{
+    margin: auto;
+    margin-right: 240px;
+}
+.loggin-button{
+    @include bordered-button(100px, 3px);
+    font-size: 18px;
+}
+#open-settings{
+    height: 20px;
+    width: 20px;
+    margin: auto 40px auto 0;
+}
+.settings{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin: auto 40px auto 0;
+    stroke: $text-links;
+}
+.exp{
+    width: 30px;
+    height: 30px;
+    clip-path: url(/assets/img/logo_gradient.svg);
+    background: turquoise;
+}

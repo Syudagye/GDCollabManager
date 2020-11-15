@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/assets/style.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700;800&display=swap")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto&display=swap")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+        script(src="/assets/scripts/app.js")
+        title GD Collab Manager
+    body.light-theme.gradient1
+        #main-page
+            header
+                a.header-home-button(href="/")
+                    .header-icon#header-icon.svg-gradient-icon(svg-data="/assets/img/logo.svg")
+                ul.nav-tabs
+                    li.nav-tab
+                        a(href="/features") Features
+                    li.nav-tab
+                        a(href="/changelog") Changelog
+                    li.nav-tab
+                        a(href="/support") Support
+                .account
+                    button.loggin-button
+                        span.inner-text Log In
+                #open-settings
+                    .settings(svg-data="/assets/img/settings_button.svg")
+            main
+                block main_content
+    .popups
+        .popup.hidden#settings-popup
+            .settings-popup-topbar
+                span Settings
+                #settings-close.svg-gradient-icon(svg-data="/assets/img/settings_button.svg")
+            ul.settings-list
+                li.setting-tab
+                    span Dark Theme
+                    .switch#dark-theme-switch
+                        .inner-switch
+                li.setting-tab
+                    span Gradient
+                    .gradient#used-gradient
+                        .hidden#gradient-selection
+                            .gradient.selected-gradient#gradient1
+                            .gradient#gradient2
+                            .gradient#gradient3
+                li.setting-tab
+                    span Language

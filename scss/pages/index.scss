@@ -1,0 +1,40 @@
+main{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+.bg-image{
+    margin-left: 340px;
+    width: 750px;
+    height: 750px;
+    stroke: $bg-object-gradient;
+}
+.home-titles{
+    position: absolute;
+    left: 130px;
+    top: 230px;
+    h1{
+        @include text-gradient;
+        font-size: 144px;
+    }
+    h2{
+        color: $text1;
+        font-size: 48px;
+    }
+}
+#learn-more-button{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.start-button{
+    @include bordered-button(200px);
+    font-size: 48px;
+}
+.start-zone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 160px;
+    margin-top: 25%;
+}

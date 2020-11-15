@@ -1,0 +1,147 @@
+.link{
+    color: $text-links;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.popup{
+    position: absolute;
+    @include field;
+}
+#settings-popup{
+    top: 10px;
+    right: 50px;
+}
+.settings-popup-topbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 10px;
+    span{
+        @include text-gradient;
+        font-weight: 600;
+        font-size: 18px;
+    }
+}
+#settings-close{
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    margin-right: 0;
+}
+.settings-list{
+    list-style: none;
+}
+.setting-tab{
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span{
+        color: $text1;
+    }
+}
+.switch{
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    margin-right: 0;
+    background: #0000004a;
+    .inner-switch{
+        height: 10px;
+        width: 10px;
+        border: 3px solid $white-theme-field;
+        border-radius: 10px;
+        margin-left: 5px;
+        background-color: transparent;
+    }
+}
+.switch-on{
+    flex-direction: row-reverse;
+    .inner-switch{
+        margin-right: 5px;
+        background-color: #939393;
+        border-color: #939393;
+    }
+}
+.gradient{
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    border-style: none;
+    margin: 5px 0;
+}
+.selected-gradient{
+    border: 3px solid #0000004a;
+}
+#used-gradient{
+    cursor: pointer;
+    margin: auto;
+    margin-right: 0;
+    @include gradient(background);
+}
+#gradient-selection{
+    position: relative;
+    width: 35px;
+    @include field;
+    right: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &::before{
+        content: '';
+        position: relative;
+        left: 30px;
+        border-bottom: 10px solid transparent;
+        border-top: 10px solid transparent;
+        border-left: 10px solid $white-theme-field;
+        .dark-theme &{
+            border-left: 10px solid $dark-theme-field;
+        }
+        max-width: 0;
+        max-height: 0;
+    }
+}
+#gradient1{
+    cursor: pointer;
+    background: $gradient1;
+    box-sizing: border-box;
+}
+#gradient2{
+    cursor: pointer;
+    background: $gradient2;
+    box-sizing: border-box;
+}
+#gradient3{
+    cursor: pointer;
+    background: $gradient3;
+    box-sizing: border-box;
+}
+.icon{
+    @include gradient(background-image);
+    box-sizing: border-box;
+    background-origin: border-box;
+    background-clip: border-box;
+    border: solid 3px transparent;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+}
+.down-arrow{
+    height: 10px;
+    width: 10px;
+}
+.svg-gradient-icon{
+    @include svg-gradient;
+    &.filled{
+        @include svg-gradient(fill);
+    }
+}

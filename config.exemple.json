@@ -1,0 +1,6 @@
+{
+    "client_id": "CLIENT ID",
+    "client_secret": "CLIENT SECRET",
+    "scope": "identify guilds",
+    "port": 9740
+}
