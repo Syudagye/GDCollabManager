@@ -16,8 +16,6 @@ app.use('/assets', express.static(__dirname + '/assets'))
 app.use('/assets/scss', express.static(__dirname + '/scss'))
 
 //routes
-//app.get('/', (req, res) => res.sendFile(__dirname + '/html/home.html'))
-//app.get('/dashboard', (req, res) => res.sendFile(__dirname + '/html/dashboard.html'))
 app.get('/', (req, res) => res.render('home'))
 app.get('/dashboard', (req, res) => res.render('dashboard'))
 
