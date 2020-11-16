@@ -1,4 +1,6 @@
+var Cookies
 var isPopupFocused = true
+var Discord
 
 function popupClose(){
     $('#main-page').removeClass('blurred')
@@ -32,9 +34,36 @@ function loadSvg(){
     });
 }
 
+function parseCookies(cookies) {
+    let array = cookies.split('; ')
+    let result = "{"
+    array.forEach(e => {
+        let tmp = e.split('=')
+        result = result.concat(`"${tmp[0]}": "${tmp[1]}",`)
+    });
+    Cookies = JSON.parse(result.slice(0, result.length - 1).concat('}'))
+}
+
+function login() {
+    authWindow = window.open('/discord_auth', '_blank', 'width=500,height=750,dependent=yes')
+}
+
+function loginEnd() {
+    authWindow.close()
+    window.location.href = '/dashboard'
+}
+
 $('document').ready(async () => {
     $.when(await loadSvg()).then(() => {
-    
+
+        parseCookies(document.cookie)
+
+        if(Cookies.user != undefined){
+            //load discord user info and update the header
+        }
+
+        $('#js--login').click(() => login())
+
         //popups open
         $('#open-settings').click(() => {
             $('#main-page').addClass('blurred')
