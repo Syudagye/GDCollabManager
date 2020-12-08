@@ -69,7 +69,7 @@ $('document').ready(async () => {
 
         parseCookies(document.cookie)
 
-        if(Cookies.tokens != undefined || Cookies.tokens != ''){
+        if(Cookies.tokens != undefined && Cookies.tokens != ''){
             if(JSON.parse(decodeURIComponent(Cookies.tokens_expiration)).time < Date.now()){
                 $.get(`/discord_auth/refresh_token?refresh_token=${JSON.parse(decodeURIComponent(Cookies.tokens).substr(2)).refresh_token}`, (data, status) => {
                     setCookie('token', encodeURIComponent(data))
@@ -89,7 +89,7 @@ $('document').ready(async () => {
                 $('.account').children().replaceWith([avatar, username, '<div class="down-arrow svg-gradient-icon filled" svg-data="/assets/img/down_arrow.svg"></div>'])
                 loadSvg()
             })
-        }
+        }else if(window.location.href.endsWith('/dashboard')) window.location.href = '/'
 
         $('#js--login').click(() => login())
 
