@@ -2,6 +2,9 @@ const express = require('express')
 const fs = require('fs')
 const cookieparser = require('cookie-parser')
 const config = require('./config')
+const { parse } = require('path')
+const request = require('request')
+const querystring = require('querystring')
 
 const app = express()
 
@@ -21,8 +24,6 @@ app.get('/dashboard', (req, res) => res.render('dashboard'))
 app.get('/discord_auth', (req, res) => res.redirect(config.getAuthUrl(req.headers.host)))
 app.get('/discord_auth/exchange_code', (req, res) => {
     if(req.query.code != undefined){
-        let request = require('request')
-        let querystring = require('querystring')
         request.post('https://discord.com/api/v6/oauth2/token', {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -36,11 +37,41 @@ app.get('/discord_auth/exchange_code', (req, res) => {
                 scope: config.discord.scope
             })
         }, (err, _res, body) => {
-            res.cookie('user', JSON.parse(body))
-            res.send('<script>document.onload = window.opener.loginEnd()</script>')
+            let parsedBody = JSON.parse(body)            
+            res.cookie('tokens', parsedBody)
+            res.cookie('tokens_expiration', `{\"time\": ${parsedBody.expires_in + Date.now()}}`)
+            res.send('<script>document.onload = window.opener.loginEnd(false)</script>')
         })
     }
+    else if(req.query.error == "access_denied"){
+        res.send('<script>document.onload = window.opener.loginEnd(true)</script>')
+    }
     else res.redirect('/')
+})
+app.get('/discord_auth/refresh_token', (req, res) => {
+    if(req.query.refresh_token != undefined){
+        console.log("ok boomer")
+        request.post('https://discord.com/api/v6/oauth2/token', {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: querystring.stringify({
+                client_id: config.discord.client_id,
+                client_secret: config.discord.client_secret,
+                grant_type: "refresh_token",
+                refresh_token: req.query.refresh_token,
+                redirect_uri: `http://${req.headers.host}/discord_auth/refresh_token`,
+                scope: config.discord.scope
+            })
+        }, (err, _res, body) => {
+            console.log(err)
+            let parsedBody = JSON.parse(body)     
+            console.log(parsedBody)       
+            res.cookie('tokens', parsedBody)
+            res.cookie('tokens_expiration', `{\"time\": ${parsedBody.expires_in + Date.now()}}`) 
+            res.json(body)
+        })
+    }
 })
 
 app.listen(config.port, () => console.log('server started'))

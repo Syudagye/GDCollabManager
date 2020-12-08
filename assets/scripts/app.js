@@ -45,12 +45,17 @@ function parseCookies(cookies) {
 }
 
 function login() {
-    authWindow = window.open('/discord_auth', '_blank', 'width=500,height=750,dependent=yes')
+    authWindow = window.open('/discord_auth', '_blank', 'width=500,height=750,dependent=yes,floating=yes')
 }
 
-function loginEnd() {
-    authWindow.close()
-    window.location.href = '/dashboard'
+function loginEnd(isFailed) {
+    if(!isFailed){
+        authWindow.close()
+        window.location.href = '/dashboard'
+    }else{
+        authWindow.close()
+        alert("Authentification failed :/")
+    }
 }
 
 $('document').ready(async () => {
@@ -58,8 +63,14 @@ $('document').ready(async () => {
 
         parseCookies(document.cookie)
 
-        if(Cookies.user != undefined){
-            //load discord user info and update the header
+        console.log(Cookies.tokens)
+        if(Cookies.tokens != undefined){
+            if(JSON.parse(decodeURIComponent(Cookies.tokens_expiration)).time < Date.now()){
+                $.get(`/discord_auth/refresh_token?refresh_token=${JSON.parse(decodeURIComponent(Cookies.tokens).substr(2)).refresh_token}`, (data, status) => {
+                    console.log(JSON.parse(data))
+                })
+            }
+            let e = `<img class=\"icon\" src="${""}">`
         }
 
         $('#js--login').click(() => login())
