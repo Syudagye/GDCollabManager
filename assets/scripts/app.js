@@ -145,5 +145,11 @@ $('document').ready(async () => {
             $('#gradient3').addClass('selected-gradient')
             popupClose()
         })
+        $('.start-button').click(() => {
+            if(Cookies.tokens != undefined && Cookies.tokens != '')
+                window.location.href = "/dashboard"
+            else
+                login()
+        })
     })
 })

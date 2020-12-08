@@ -28,6 +28,7 @@ main{
     margin-top: 15px;
 }
 .start-button{
+    cursor: pointer;
     @include bordered-button(200px);
     font-size: 48px;
 }
