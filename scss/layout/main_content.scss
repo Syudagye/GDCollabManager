@@ -32,7 +32,7 @@
     margin: auto;
     margin-right: 0;
 }
-.settings-list{
+.settings-list, .account-tabs{
     list-style: none;
 }
 .setting-tab{
@@ -43,6 +43,31 @@
     span{
         color: $text1;
     }
+}
+#account-popup{
+    top: 5px;
+    right: 310px;
+}
+.account-popup-topbar{
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.account-tab{
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span{
+        color: $text1;
+    }
+}
+.account-disconnect span{
+    color: #f00 !important;
+    font-weight: bold;
 }
 .switch{
     cursor: pointer;
