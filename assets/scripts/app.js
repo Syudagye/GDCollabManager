@@ -1,6 +1,7 @@
 var Cookies
+var User
+
 var isPopupFocused = true
-var Discord
 
 function popupClose(){
     $('#main-page').removeClass('blurred')
@@ -44,6 +45,11 @@ function parseCookies(cookies) {
     Cookies = JSON.parse(result.slice(0, result.length - 1).concat('}'))
 }
 
+function setCookie(name, value){
+    document.cookie = `${name}=${value}`
+    parseCookies(document.cookie)
+}
+
 function login() {
     authWindow = window.open('/discord_auth', '_blank', 'width=500,height=750,dependent=yes,floating=yes')
 }
@@ -63,14 +69,26 @@ $('document').ready(async () => {
 
         parseCookies(document.cookie)
 
-        console.log(Cookies.tokens)
-        if(Cookies.tokens != undefined){
+        if(Cookies.tokens != undefined || Cookies.tokens != ''){
             if(JSON.parse(decodeURIComponent(Cookies.tokens_expiration)).time < Date.now()){
                 $.get(`/discord_auth/refresh_token?refresh_token=${JSON.parse(decodeURIComponent(Cookies.tokens).substr(2)).refresh_token}`, (data, status) => {
-                    console.log(JSON.parse(data))
+                    setCookie('token', encodeURIComponent(data))
                 })
             }
-            let e = `<img class=\"icon\" src="${""}">`
+            let token = JSON.parse(decodeURIComponent(Cookies.tokens).substr(2)).access_token
+            $.ajax({
+                type: 'GET',
+                url: 'https://discord.com/api/v8/users/@me',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).done((data, status) => {
+                User = data
+                let avatar = `<img class=\"icon\" src="https://cdn.discordapp.com/avatars/${User.id}/${User.avatar}.png">`
+                let username = `<span class=\"account-name\">${User.username}</span>`
+                $('.account').children().replaceWith([avatar, username, '<div class="down-arrow svg-gradient-icon filled" svg-data="/assets/img/down_arrow.svg"></div>'])
+                loadSvg()
+            })
         }
 
         $('#js--login').click(() => login())

@@ -24,7 +24,7 @@ app.get('/dashboard', (req, res) => res.render('dashboard'))
 app.get('/discord_auth', (req, res) => res.redirect(config.getAuthUrl(req.headers.host)))
 app.get('/discord_auth/exchange_code', (req, res) => {
     if(req.query.code != undefined){
-        request.post('https://discord.com/api/v6/oauth2/token', {
+        request.post('https://discord.com/api/v8/oauth2/token', {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -50,8 +50,7 @@ app.get('/discord_auth/exchange_code', (req, res) => {
 })
 app.get('/discord_auth/refresh_token', (req, res) => {
     if(req.query.refresh_token != undefined){
-        console.log("ok boomer")
-        request.post('https://discord.com/api/v6/oauth2/token', {
+        request.post('https://discord.com/api/v8/oauth2/token', {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
