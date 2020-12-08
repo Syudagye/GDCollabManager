@@ -2,6 +2,7 @@ var Cookies
 var User
 
 var isPopupFocused = true
+var isAuthentified = false
 
 function popupClose(){
     $('#main-page').removeClass('blurred')
@@ -141,10 +142,14 @@ function loadEvents() {
     $('#js--account-disconnect').click(() => window.location.href = "/logout")
 }
 
+//doing stuff before html is loaded
+parseCookies(document.cookie)
+isAuthentified = Cookies.tokens != undefined && Cookies.tokens != ''
+if(!isAuthentified && window.location.href.endsWith('/dashboard')) window.location.href = '/'
+
+//doing stuff when html is loaded
 $('document').ready(async () => {
-
-    parseCookies(document.cookie)
-
+    loadSvg()
     if(Cookies.tokens != undefined && Cookies.tokens != ''){
         $('.account').attr('id', 'js--account-popup-open').children().replaceWith([
             '<img class=\"icon\">',
@@ -170,9 +175,5 @@ $('document').ready(async () => {
             loadSvg()
             loadEvents()
         })
-    }else{
-        loadEvents()
-        if(window.location.href.endsWith('/dashboard')) window.location.href = '/'
-    }
-    loadSvg()
+    }else loadEvents()
 })
