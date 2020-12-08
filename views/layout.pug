@@ -22,7 +22,12 @@ html(lang="en")
                     li.nav-tab
                         a(href="/support") Support
                 .account
-                    button.loggin-button
+                    //structure for logged in page :
+                    //img.icon(src="/")
+                    //span.account-name Syudagye
+                    //.down-arrow.svg-gradient-icon.filled(svg-data="/assets/img/down_arrow.svg") 
+                    //html version: <div class="down-arrow svg-gradient-icon filled" svg-data="/assets/img/down_arrow.svg"></div>
+                    button.loggin-button#js--login
                         span.inner-text Log In
                 #open-settings
                     .settings(svg-data="/assets/img/settings_button.svg")
@@ -47,3 +52,13 @@ html(lang="en")
                             .gradient#gradient3
                 li.setting-tab
                     span Language
+        .popup.hidden#account-popup
+            .account-popup-topbar#js--account-popup-close
+                img.icon(src="/")
+                span.account-name Syudagye
+                .down-arrow.svg-gradient-icon.filled(svg-data="/assets/img/down_arrow.svg") 
+            ul.account-tabs
+                li.account-tab#js--access-dashboard
+                    span Dashboard
+                li.account-tab.account-disconnect#js--account-disconnect
+                    span Log out

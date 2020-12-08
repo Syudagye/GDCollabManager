@@ -22,10 +22,20 @@ header{
     }
 }
 .account{
+    cursor: pointer;
     margin: auto;
     margin-right: 240px;
+    display: flex;
+    align-items: center;
+}
+.account-name{
+    @include text-gradient;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 10px;
 }
 .loggin-button{
+    cursor: pointer;
     @include bordered-button(100px, 3px);
     font-size: 18px;
 }
