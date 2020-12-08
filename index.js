@@ -72,5 +72,10 @@ app.get('/discord_auth/refresh_token', (req, res) => {
         })
     }
 })
+app.get('/logout', (req, res) => {
+    res.clearCookie('tokens')
+    res.clearCookie('tokens_expiration')
+    res.redirect('/')
+})
 
 app.listen(config.port, () => console.log('server started'))
