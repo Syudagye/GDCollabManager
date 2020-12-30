@@ -37,8 +37,8 @@ app.get('/discord_auth/exchange_code', (req, res) => {
                 scope: config.discord.scope
             })
         }, (err, _res, body) => {
-            let parsedBody = JSON.parse(body)            
-            res.cookie('tokens', parsedBody)
+            res.cookie('tokens', body)
+            let parsedBody = JSON.parse(body)
             res.cookie('tokens_expiration', `{\"time\": ${parsedBody.expires_in + Date.now()}}`)
             res.send('<script>document.onload = window.opener.loginEnd(false)</script>')
         })
@@ -64,9 +64,8 @@ app.get('/discord_auth/refresh_token', (req, res) => {
             })
         }, (err, _res, body) => {
             console.log(err)
-            let parsedBody = JSON.parse(body)     
-            console.log(parsedBody)       
-            res.cookie('tokens', parsedBody)
+            res.cookie('tokens', body)
+            let parsedBody = JSON.parse(body)
             res.cookie('tokens_expiration', `{\"time\": ${parsedBody.expires_in + Date.now()}}`) 
             res.json(body)
         })
@@ -78,4 +77,4 @@ app.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-app.listen(config.port, () => console.log('server started'))
+app.listen(config.port, () => console.log('Express server started on port ' + config.port))
