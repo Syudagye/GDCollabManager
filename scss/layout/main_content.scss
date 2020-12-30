@@ -83,7 +83,7 @@
     .inner-switch{
         height: 10px;
         width: 10px;
-        border: 3px solid $white-theme-field;
+        border: 3px solid $dark-theme-field;
         border-radius: 10px;
         margin-left: 5px;
         background-color: transparent;
@@ -93,8 +93,8 @@
     flex-direction: row-reverse;
     .inner-switch{
         margin-right: 5px;
-        background-color: #939393;
-        border-color: #939393;
+        background-color: $white-theme-field;
+        border-color: $white-theme-field;
     }
 }
 .gradient{
