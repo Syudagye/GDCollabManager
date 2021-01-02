@@ -25,10 +25,9 @@ html, body{
 }
 .blurred{
     filter: blur(5px);
-    transition: filter .2s linear;
 }
 #main-page{    
-    transition: filter .2s linear;
+    transition: filter .3s ease-out;
     display: flex;
     flex-direction: column;
     height: 100%;
