@@ -1,12 +1,15 @@
 extends layout.pug
 
+block head
+    script(src="/assets/scripts/dashboard.js")
+
 block main_content
     .selection-bar
         .selection-bar_server
             span Discord Server
-            .selection-bar_server--selected
+            .selection-bar_server--selected#js--serverlist-open
                 img.icon(src="https://i.postimg.cc/pXY5MQmB/gdcm-logo.png")
-                span#selected-server-name Selected Server
+                span.selected-server-name Selected Server
                 .down-arrow.svg-gradient-icon.filled(svg-data="/assets/img/down_arrow.svg")
             #server-list
         .selection-bar_collab
@@ -152,3 +155,17 @@ block main_content
                         li 1 - alpha 0
                         li 2 - alpha 0.5
                         li 3 - uldm
+
+block popups
+    .popup.hidden#serverlist-popup
+        .serverlist-popup-topbar#js--serverlist-close
+            img.icon(src="/")
+            span.selected-server-name Selected Server
+            .down-arrow.svg-gradient-icon.filled(svg-data="/assets/img/down_arrow.svg")
+        ul.serverlist-tabs
+            li.serverlist-tab
+                img.icon(src="/")
+                span Dashboard
+        .serverlist-add#js--server-add
+            .svg-gradient-icon.filled(svg-data="/assets/img/add_button.svg")
+            span Add Server

@@ -1,4 +1,5 @@
 .selection-bar_server, .selection-bar_collab{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
@@ -22,7 +23,7 @@
         margin-left: auto;
         margin-right: 30px;
     }
-    #selected-server-name{
+    .selected-server-name{
         margin: 0;
         margin-left: 10px;
         @include text-gradient;
@@ -363,4 +364,69 @@ span.collab-list-tile_collab-status{
 .additional-infos-grid_spare-colors{
     grid-row: 2;
     grid-column: 2;
+}
+#serverlist-popup{
+    left: 40px;
+    top: 115px;
+}
+.serverlist-popup-topbar{
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 60px;
+    width: 380px;
+    .selected-server-name{
+        margin: 0;
+        margin-left: 10px;
+        @include text-gradient;
+        font-weight: 800;
+        font-size: 18px;
+    }
+    .down-arrow{
+        margin: 0;
+        margin-left: auto;
+        margin-right: 30px;
+    }
+}
+.serverlist-tabs{
+    list-style: none;
+}
+.serverlist-tab{
+    cursor: pointer;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span{
+        color: $text1;
+        margin: 0;
+        margin-left: 10px;
+        font-weight: 500;
+        font-size: 18px;
+    }
+    .icon{
+        border: none;
+        background: none;
+        box-sizing: border-box;
+        border: solid 3px transparent;
+    }
+}
+.serverlist-add{
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    svg{
+        height: 30px;
+        width: 30px;
+        padding: 10px;
+    }
+    span{
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 10px;
+        @include text-gradient;
+    }
 }

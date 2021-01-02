@@ -18,6 +18,27 @@ function httpGet(url, callback){
     http.open('GET', url, true)
     http.send()
 }
+function httpPost(url, data, callback){ //unused for now
+    let http = new XMLHttpRequest()
+    http.onreadystatechange = () => {
+        if (http.readyState == 4 && http.status == 200)
+            callback(http.responseText)
+    }
+    http.open('POST', url, true)
+    http.setRequestHeader('Content-Type', 'application/json')
+    http.send(data)
+    console.log('called')
+}
+function discordapiGet(endpoint, callback){
+    let http = new XMLHttpRequest()
+    http.onreadystatechange = () => {
+        if (http.readyState == 4 && http.status == 200)
+            callback(http.responseText)
+    }
+    http.open('GET', `https://discord.com/api/v8/${endpoint}`, true)
+    http.setRequestHeader('Authorization', `Bearer ${JSON.parse(decodeURIComponent(cookies.tokens)).access_token}`)
+    http.send()
+}
 
 function loadSvg(){
     let svgs = document.querySelectorAll('div[svg-data]')
@@ -38,21 +59,16 @@ function loadTheme() {
     let body = document.querySelector('body')
     if(cookies.theme === undefined){
         setCookie('theme','dark')
-        debugger
     }else if(cookies.theme === 'light'){
         body.classList.add('light-theme')
         body.classList.remove('dark-theme')
-        debugger
     }
     if(cookies.gradient === undefined){
         setCookie('gradient', '1')
-        debugger
     }else if(cookies.gradient === '2'){
         changeGradient('2')
-        debugger
     }else if(cookies.gradient === '3'){
         changeGradient('3')
-        debugger
     }
 }
 
@@ -78,6 +94,13 @@ function openPopup(selector) {
     popup.onmouseenter = () => document.onclick = () => null
     openedPopups.push(popup)
 }
+function openPopupToParentPos(selector, parentSelector){
+    let popup = document.querySelector(selector)
+    let parentpos = document.querySelector(parentSelector).getBoundingClientRect()
+    popup.style.setProperty('top', `${parentpos.top}px`)
+    popup.style.setProperty('left', `${parentpos.left}px`)
+    openPopup(selector)
+}
 function closePopups(selector) {
     document.querySelector('#main-page').classList.remove('blurred')
     openedPopups.forEach(v => {
@@ -88,7 +111,7 @@ function closePopups(selector) {
 }
 
 function login() {
-    authWindow = window.open('/discord_auth', '_blank', 'width=500,height=750,dependent=yes,floating=yes')
+    authWindow = window.open('/discord_auth', '_blank', 'width=500,height=830,dependent=yes,floating=yes')
 }
 
 function loginEnd(isFailed) {
@@ -115,7 +138,7 @@ function loadEvents(){
     document.querySelector('#js--account-disconnect').onclick = () => window.location.href = "/logout"
     
     //opening popups
-    document.querySelector('#open-settings').onclick = () => openPopup('#settings-popup')
+    document.querySelector('#open-settings').onclick = () => openPopup('#settings-popup', '#open-settings')
     document.querySelector('#used-gradient').onclick = () => openPopup('#gradient-selection')
     //closing popups
     document.querySelector('#settings-close').onclick = () => closePopups() //doesn't work for some reason
@@ -155,19 +178,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                             '<span class=\"account-name\">loading...</span>' +
                             '<div class="down-arrow svg-gradient-icon filled" svg-data="/assets/img/down_arrow.svg"></div>'
         let getUser = () => {
-            let token = JSON.parse(decodeURIComponent(cookies.tokens)).access_token
-            let http = new XMLHttpRequest()
-            http.onreadystatechange = () => {
-                if (http.readyState == 4 && http.status == 200){
-                    user = JSON.parse(http.responseText)
-                    document.querySelectorAll('.account img.icon, .account-popup-topbar img.icon').forEach(el => el.setAttribute('src', `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`))
-                    document.querySelector('.account-name').innerHTML = user.username
-                    loadSvg()
-                }
-            }
-            http.open('GET', 'https://discord.com/api/v8/users/@me', true)
-            http.setRequestHeader('Authorization', `Bearer ${token}`)
-            http.send()
+            discordapiGet('users/@me', (res) => {
+                user = JSON.parse(res)
+                document.querySelectorAll('.account img.icon, .account-popup-topbar img.icon').forEach(el => el.setAttribute('src', `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`))
+                document.querySelector('.account-name').innerHTML = user.username
+                loadSvg()
+            })
         }
         if(JSON.parse(decodeURIComponent(cookies.tokens_expiration)).time < Date.now()){
             httpGet(`/discord_auth/refresh_token?refresh_token=${JSON.parse(decodeURIComponent(cookies.tokens)).refresh_token}`, (res) => {
@@ -175,7 +191,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             })
         }
         getUser()
-        document.querySelector('#js--account-popup-open').onclick = () => openPopup('#account-popup')
+        document.querySelector('#js--account-popup-open').onclick = () => openPopup('#account-popup', '#js--account-popup-open')
     }else document.querySelector('#js--login').onclick = () => login()
     //loads global events
     loadEvents()

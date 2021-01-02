@@ -1,7 +1,7 @@
 const request = require('request')
 const querystring = require('querystring')
 
-function exchangeCode(req ,res, config){    
+function exchangeCode(req ,res, config){
     if(req.query.code != undefined){
         request.post('https://discord.com/api/v8/oauth2/token', {
             headers: {
@@ -42,11 +42,10 @@ function refreshToken(req, res, config) {
                 scope: config.discord.scope
             })
         }, (err, _res, body) => {
-            console.log(err)
             res.cookie('tokens', body)
             let parsedBody = JSON.parse(body)
             res.cookie('tokens_expiration', `{\"time\": ${parsedBody.expires_in + Date.now()}}`) 
-            res.json(body)
+            res.json(parsedBody)
         })
     }
 }
