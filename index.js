@@ -37,6 +37,8 @@ app.get('/logout', (req, res) => discordauth.logout(res))
 
 //api routes
 app.get('/api/servers', (req, res) => app.run.servers(req, res, config, discordClient)) //returns the list of user's servers where the GDCM bot is found
+app.get('/api/collabs/:id', (req, res) => app.run.collabs(req, res, config, discordClient)) //returns the list of collabs of a given server id
+app.get('/api/discord/users/:id', (req, res) => app.run.users(req, res, config, discordClient)) //returns the user object of a specified user id
 
 app.listen(config.port, () => console.log('Express server started on port ' + config.port))
 

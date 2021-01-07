@@ -1,4 +1,5 @@
 var servers = []
+var collabs = []
 
 function reloadServers() {
     document.querySelectorAll('.selected-server-name').forEach(e => e.innerHTML = 'loading...')
@@ -26,6 +27,31 @@ function selectServer(index) {
     document.querySelectorAll('.serverlist-popup-topbar span, #js--serverlist-open span')
         .forEach(el => el.innerHTML = servers[index].name)
     closePopups()
+    httpGet(`/api/collabs/${servers[index].id}`, (res) => {
+        collabs = JSON.parse(res)
+        let collablist = ""
+        console.log(collabs)
+        collabs.forEach(collab => {
+            console.log(collab)
+            httpGet(`/api/discord/users/${collab.host_id}`, (res) => {
+                console.log(res)
+                collablist += `<li class="collab-list-tile"><div class="collab-list-tile_main-infos">`
+                    + `<h1>${collab.name}</h1><h2>${res.username}</h2><h3>song</h3></div>` // need to handle song info parsing
+                    + `<div class="collab-list-tile_collab-infos"><div class="collab-list-tile_member-count"><div svg-data="/assets/img/members.svg" class="svg-gradient-icon filled"></div>`
+                    + `<span>?</span></div><span class="collab-list-tile_collab-status"></span></div>` // niy (member count + collab status)
+            })
+        });
+        let tiles = document.querySelector('#collab-list')
+        tiles.innerHTML = collablist
+        tiles.childNodes.forEach((el, index) => el.onclick = (() => selectCollab(index)))
+        selectCollab(0)
+        loadSvg()
+    })
+}
+
+function selectCollab(index) {
+    document.querySelectorAll('#collab-list li').forEach(el => el.classList.remove('collab-list-tile--selected'))
+    document.querySelector('#collab-list').children[index].classList.add('collab-list-tile--selected')
 }
 
 function addServer() {
@@ -41,7 +67,6 @@ function addServerEnd(isFailed) {
         addServerWindow.close()
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#js--serverlist-open').onclick = () => openPopupToParentPos('#serverlist-popup', '#js--serverlist-open')
