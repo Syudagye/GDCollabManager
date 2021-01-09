@@ -72,5 +72,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#js--serverlist-open').onclick = () => openPopupToParentPos('#serverlist-popup', '#js--serverlist-open')
     document.querySelector('#js--server-add').onclick = () => addServer()
 
-    if(isAuthentified) reloadServers()
+    reloadServers()
 })

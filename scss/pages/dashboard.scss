@@ -1,5 +1,4 @@
 .selection-bar_server, .selection-bar_collab{
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
@@ -13,6 +12,7 @@
 }
 .selection-bar_server--selected{
     @include field;
+    cursor: pointer;
     height: 60px;
     width: 380px;
     display: flex;
@@ -34,6 +34,7 @@
     overflow-y: scroll;
 }
 .collab-list-tile{
+    cursor: pointer;
     width: 310px;
     max-height: 80px;
     display: flex;
@@ -100,6 +101,27 @@ span.collab-list-tile_collab-status{
     border-radius: 5px;
     box-sizing: border-box;
     //TODO: Collab status colors
+}
+.collab-list-add{
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    svg{
+        height: 30px;
+        width: 30px;
+        padding: 10px;
+        fill: $text1;
+    }
+    span{
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+        margin-left: 10px;
+        color: $text1;
+        width: max-content;
+        text-align: center;
+    }
 }
 .collab-dashboard{
     display: grid;
