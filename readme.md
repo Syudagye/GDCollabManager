@@ -16,7 +16,7 @@
 ---
 
 ## Running the project
-To run the project locally, you will need to copy the content of `config.exemple.json` to a `config.json` file and fill the required infos.
+To run the project locally, you will need to copy the content of [`config.example.json`](./config.example.json) to a `config.json` file and fill the required infos.
 
 Also make sure that you have an up to date NodeJs version installed, and that all the dependencies are installed (use `npm i`).
 
