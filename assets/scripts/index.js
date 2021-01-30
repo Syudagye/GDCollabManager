@@ -92,6 +92,7 @@ function openPopup(selector) {
     popup.classList.remove('hidden')
     popup.onmouseleave = () => document.onclick = () => closePopups()
     popup.onmouseenter = () => document.onclick = () => null
+    document.querySelector('#popups').classList.remove('hidden')
     openedPopups.push(popup)
 }
 function openPopupToParentPos(selector, parentSelector){
@@ -103,6 +104,7 @@ function openPopupToParentPos(selector, parentSelector){
 }
 function closePopups(selector) {
     document.querySelector('#main-page').classList.remove('blurred')
+    document.querySelector('#popups').classList.add('hidden')
     openedPopups.forEach(v => {
         v.classList.add('hidden')
     })

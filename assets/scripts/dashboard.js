@@ -71,6 +71,7 @@ function addServerEnd(isFailed) {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#js--serverlist-open').onclick = () => openPopupToParentPos('#serverlist-popup', '#js--serverlist-open')
     document.querySelector('#js--server-add').onclick = () => addServer()
+    document.querySelector('#js--createcollab-open').onclick = () => openPopup("#create-collab-popup")
 
     reloadServers()
 })

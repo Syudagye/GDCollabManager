@@ -35,7 +35,7 @@ block main_content
                             .svg-gradient-icon.filled(svg-data="/assets/img/member.svg")
                             span 23
                         span.collab-list-tile_collab-status
-            .collab-list-add
+            .collab-list-add#js--createcollab-open
                 div(svg-data="/assets/img/add_button.svg")
                 span Create collab
     .collab-dashboard
@@ -172,3 +172,35 @@ block popups
         .serverlist-add#js--server-add
             .svg-gradient-icon.filled(svg-data="/assets/img/add_button.svg")
             span Add Server
+    .popup.hidden#create-collab-popup
+        h1 Create Collab
+        form
+            .createcollab-name
+                label Name
+                input(type="text" pattern="[a-zA-Z0-9 ]+" maxlength="20" minlength="1")
+            .createcollab-description
+                label Description
+                textarea(name="Description" maxlength="512")
+            .createcollab-host
+                label Host
+                select
+                    option Syudagye
+                    option Not Syudagye
+            .createcollab-verifier
+                label Verifier
+                select
+                    option Syudagye
+                    option Not Syudagye
+            .createcollab-song
+                label Song
+                .song-form
+                    select
+                        option Newgrounds
+                        option Youtube
+                    input(type="text")
+                    span thing
+        .createcollab-buttons
+            button#cancel-button
+                .inner-text Cancel
+            button#create-button
+                .inner-text Create

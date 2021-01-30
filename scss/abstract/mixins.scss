@@ -27,6 +27,18 @@
     .inner-text{
         @include text-gradient;
         font-weight: bold;
+        margin: auto;
+    }
+}
+@mixin bordered-button-bg-color($color) {
+    .dark-theme.gradient1 &{
+        background-image: linear-gradient($color, $color), $gradient1;
+    }
+    .dark-theme.gradient2 &{
+        background-image: linear-gradient($color, $color), $gradient2;
+    }
+    .dark-theme.gradient3 &{
+        background-image: linear-gradient($color, $color), $gradient3;
     }
 }
 @mixin text-gradient {
