@@ -173,7 +173,9 @@
     width: 10px;
 }
 .svg-gradient-icon{
-    @include svg-gradient;
+    .stroked-path{
+        @include svg-gradient;
+    }
     &.filled{
         @include svg-gradient(fill);
     }
