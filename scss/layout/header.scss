@@ -5,18 +5,26 @@
     margin: 10px 20px;
 }
 .mobile-header{
-    visibility: hidden;
+    display: none;
 }
 @media only screen and (max-width: 700px){
     .desktop-header{
-        visibility: hidden;
+        display: none;
     }
     .mobile-header{
         display: flex;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 200;
         flex-direction: row;
         height: 50px;
         padding: 10px 20px;
-        background-color: inherit;
+        background-color: $dark-theme-bg;
+        .white-theme &{
+            background-color: $white-theme-bg;
+        }
+        filter: drop-shadow(0 10px 5px #0006);
     }
 }
 .header-logo{
