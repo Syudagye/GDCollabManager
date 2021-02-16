@@ -1,0 +1,105 @@
+@mixin bordered-button($width, $border-width: 5px) {    
+    //Credits: Laica
+    min-width: $width;
+    height: $width / 2;
+    border: solid $border-width transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border-radius: $width / 4;
+    .gdcm--theme-dark.gdcm--gradient1 &{
+        background-image: linear-gradient($dark-theme-bg, $dark-theme-bg), $gradient1;
+    }
+    .gdcm--theme-dark.gdcm--gradient2 &{
+        background-image: linear-gradient($dark-theme-bg, $dark-theme-bg), $gradient2;
+    }
+    .gdcm--theme-dark.gdcm--gradient3 &{
+        background-image: linear-gradient($dark-theme-bg, $dark-theme-bg), $gradient3;
+    }
+    .gdcm--theme-light.gdcm--gradient1 &{
+        background-image: linear-gradient($white-theme-bg, $white-theme-bg), $gradient1;
+    }
+    .gdcm--theme-light.gdcm--gradient2 &{
+        background-image: linear-gradient($white-theme-bg, $white-theme-bg), $gradient2;
+    }
+    .gdcm--theme-light.gdcm--gradient3 &{
+        background-image: linear-gradient($white-theme-bg, $white-theme-bg), $gradient3;
+    }
+}
+@mixin bordered-button-bg-color($color) {
+    .gdcm--theme-dark.gdcm--gradient1 &{
+        background-image: linear-gradient($color, $color), $gradient1;
+    }
+    .gdcm--theme-dark.gdcm--gradient2 &{
+        background-image: linear-gradient($color, $color), $gradient2;
+    }
+    .gdcm--theme-dark.gdcm--gradient3 &{
+        background-image: linear-gradient($color, $color), $gradient3;
+    }
+}
+@mixin text-gradient {
+    .gdcm--gradient1 &{
+        background: $gradient1;
+        background-clip: text;
+        background-size: 100% 100%;
+    }
+    .gdcm--gradient2 &{
+        background: $gradient2;
+        background-clip: text;
+        background-size: 100% 100%;
+    }
+    .gdcm--gradient3 &{
+        background: $gradient3;
+        background-clip: text;
+        background-size: 100% 100%;
+    }
+    color: transparent;
+}
+@mixin field{    
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: $white-theme-field;
+    .gdcm--theme-dark &{
+        background-color: $dark-theme-field;
+    }
+    filter: drop-shadow(2px 2px 2px #00000010);
+}
+@mixin gradient($property){
+    .gdcm--gradient1 &{
+        #{$property}: $gradient1;
+    }
+    .gdcm--gradient2 &{
+        #{$property}: $gradient2;
+    }
+    .gdcm--gradient3 &{
+        #{$property}: $gradient3;
+    }
+}
+@mixin svg-gradient($properties: [stroke]) {
+    $nums: 1, 2, 3;
+    @each $num in $nums {
+        .gdcm--gradient#{$num} &{
+            @each $property in $properties {
+                #{$property}: url('/assets/img/gradients.svg#gradient#{$num}');
+            }
+        }
+    }
+}
+@mixin selection-indicator($selector-name){
+    &::before{
+        content: " ";
+        float: left;
+        height: inherit;
+        width: 0;
+        background-origin: border-box;
+        background-clip: border-box;
+        box-sizing: border-box;
+        border: solid 3px transparent;
+        border-radius: 4px;
+    }
+    &#{$selector-name}::before{
+        @include gradient(background-image);
+    }
+    &:hover::before{
+        background-image: linear-gradient($text2 0%, $text2 100%);
+    }
+}

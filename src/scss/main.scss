@@ -1,0 +1,64 @@
+@import './abstract/variable.scss';
+@import './abstract/mixins.scss';
+
+//general style
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    scrollbar-width: none;
+    font-family: $main-font;
+}
+html, body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.gdcm--theme-light{
+    background-color: $white-theme-bg;
+}
+.gdcm--theme-dark{
+    background-color: $dark-theme-bg;
+}
+.hidden{
+    visibility: hidden;
+}
+.blurred{
+    filter: blur(5px);
+}
+#main-page{    
+    transition: filter .3s ease-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+#svg__masks{
+    position: relative;
+    width: 0;
+    height: 0;
+}
+.button{
+    cursor: pointer;
+}
+.button__inner-text{
+    @include text-gradient;
+    font-weight: bold;
+    margin: auto;
+}
+.link{    
+    color: #737BA5;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+/*layout style*/
+
+/*components style*/
+@import './components/header.scss';
+@import './components/account.scss';
+
+/*pages style*/
+@import './pages/home.scss';

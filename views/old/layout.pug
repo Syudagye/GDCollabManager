@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/assets/style.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700;800&display=swap")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto&display=swap")
+        script(src="/assets/scripts/index.js")
+        title GD Collab Manager
+        block head
+    body.dark-theme.gradient1
+        #main-page
+            .desktop-header
+                a.header-home-button(href="/")
+                    .header-logo.svg-gradient-icon(svg-data="/assets/img/logo.svg")
+                ul.nav-tabs
+                    li.nav-tab
+                        a(href="/features") Features
+                    li.nav-tab
+                        a(href="/changelog") Changelog
+                    li.nav-tab
+                        a(href="/support") Support
+                .account
+                    //structure for logged in page :
+                    //img.icon(src="/")
+                    //span.account-name Syudagye
+                    //.down-arrow.svg-gradient-icon.filled(svg-data="/assets/img/down_arrow.svg") 
+                    //html version: <div class="down-arrow svg-gradient-icon filled" svg-data="/assets/img/down_arrow.svg"></div>
+                    button.loggin-button#js--login
+                        span.inner-text Log In
+                #open-settings
+                    .settings(svg-data="/assets/img/settings_button.svg")
+            .mobile-header
+                a.header-home-button(href="/")
+                    .header-logo.svg-gradient-icon(svg-data="/assets/img/logo.svg")
+            main
+                block main_content
+    #popups.hidden
+        .popup.hidden#settings-popup
+            .settings-popup-topbar
+                span Settings
+                #settings-close.svg-gradient-icon(svg-data="/assets/img/settings_button.svg")
+            ul.settings-list
+                li.setting-tab
+                    span Light Theme
+                    .switch#light-theme-switch
+                        .inner-switch
+                li.setting-tab
+                    span Gradient
+                    .gradient#used-gradient
+                        .hidden#gradient-selection
+                            .gradient.selected-gradient#gradient1
+                            .gradient#gradient2
+                            .gradient#gradient3
+                li.setting-tab
+                    span Language
+        .popup.hidden#account-popup
+            .account-popup-topbar#js--account-popup-close
+                img.icon(src="/")
+                span.account-name Syudagye
+                .down-arrow.svg-gradient-icon.filled(svg-data="/assets/img/down_arrow.svg") 
+            ul.account-tabs
+                li.account-tab#js--access-dashboard
+                    span Dashboard
+                li.account-tab.account-disconnect#js--account-disconnect
+                    span Log out
+        block popups
+    #masks(svg-data="/assets/img/logo_masks.svg")

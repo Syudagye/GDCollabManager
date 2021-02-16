@@ -1,0 +1,36 @@
+.account{
+    cursor: pointer;
+    margin: auto;
+    margin-right: 10%;
+    display: flex;
+    align-items: center;
+}
+.account--mobile{
+    margin: 0;
+}
+.account__loggin-button{
+    @include bordered-button(100px, 3px);
+    font-size: 18px;
+}
+.account__avatar{
+    @include gradient(background-image);
+    box-sizing: border-box;
+    border: solid 3px transparent;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    margin-right: 5px
+}
+.account__name{
+    @include text-gradient;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+.account__arrow{
+    $props: fill, stroke;
+    @include svg-gradient($props);
+    height: 10px;
+    width: 10px;
+    margin-left: 5px;
+}

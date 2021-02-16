@@ -1,0 +1,70 @@
+.home-page{
+    flex: 1;
+}
+.home-page__logo-bg{
+    stroke: url("/assets/img/gradients.svg#bg-object-gradient");
+    position: absolute;
+    width: 750px;
+    height: 750px;
+    z-index: -1;
+    left: 30%;
+    @media only screen and (max-width: 700px){
+        width: 1200px;
+        height: 1200px;
+        z-index: -1;
+        left: 20%;
+        transform: translateX(-50%);
+        top: 20%;
+    }
+}
+.home-page__content{
+    margin-left: 7%;
+    margin-top: 8%;
+    max-width: max-content;
+    @media only screen and (max-width: 700px){
+        text-align: center;
+        max-width: none;
+        margin: 50px 2%;
+    }    
+}
+.home-page__title{
+    @include text-gradient;
+    font-size: 144px;
+    width: auto;
+    @media only screen and (max-width: 700px){
+        font-size: 60px;
+    }
+}
+.home-page__subtitle{
+    color: $text1;
+    font-size: 48px;
+    width: auto;
+    @media only screen and (max-width: 700px){
+        font-size: 24px;
+        margin-top: 30px;
+    }
+}
+.home-page__buttons{
+    display: flex;
+    flex-direction: column;
+    margin-left: 70%;
+    margin-top: 50px;
+    width: min-content;
+    align-items: center;
+    @media only screen and (max-width: 700px){
+        margin: 100px auto;
+    }
+}
+.home-page__start-button{
+    @include bordered-button(200px);
+    font-size: 48px;
+    @media only screen and (max-width: 700px){
+        @include bordered-button(200px);
+        font-size: 48px;
+    }
+}
+.home-page__learn-more{    
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}

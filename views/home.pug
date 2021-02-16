@@ -1,14 +1,4 @@
 extends layout.pug
 
 block head
-    script(src="/assets/scripts/home.js")
-
-block main_content
-    .bg-image(svg-data="/assets/img/logo.svg")
-    .home-titles
-        h1 GD Collab Manager
-        h2 Manage your collabs like never before
-    .start-zone
-        button.start-button
-            span.inner-text Start
-        a.link#learn-more-button(href="/") Learn More
+    script(defer src="/assets/build/home.bundle.js")

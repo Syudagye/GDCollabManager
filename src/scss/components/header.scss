@@ -1,0 +1,57 @@
+.desktop-header{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    padding: 10px 20px;
+    @media only screen and (max-width: 700px){
+        display: none;
+    }
+}
+.desktop-header__logo{
+    @include svg-gradient;
+    height: 50px;
+    width: 50px;
+}
+.desktop-header__nav{
+    display: flex;
+    flex-direction: row;
+    margin: auto 0;
+}
+.desktop-header__nav-tab{
+    margin-left: 40px;
+    text-decoration: none;
+    color: $text-links;
+}
+.desktop-header__settings-button{
+    height: 20px;
+    width: 20px;
+    margin: auto 2% auto 0;
+}
+.desktop-header__settings-button-icon{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    stroke: #737BA5;
+}
+.mobile-header{
+    display: none;
+    @media only screen and (max-width: 700px){
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        padding: 10px 20px;
+        top: 0;
+        z-index: 200;
+        background-color: $dark-theme-bg;
+        .gdcm--theme-light &{
+            background-color: $white-theme-bg;
+        }
+        filter: drop-shadow(0 10px 5px #0006);
+    }
+}
+.mobile-header__logo{
+    @include svg-gradient;
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+}

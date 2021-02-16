@@ -19,11 +19,11 @@ function exchangeCode(req ,res, config){
             res.cookie('tokens', body)
             let parsedBody = JSON.parse(body)
             res.cookie('tokens_expiration', `{\"time\": ${parsedBody.expires_in + Date.now()}}`)
-            res.send('<script>document.onload = window.opener.loginEnd(false)</script>')
+            res.send('<script>window.opener.location.href="/dashboard"; window.close()</script>')
         })
     }
     else if(req.query.error == "access_denied"){
-        res.send('<script>document.onload = window.opener.loginEnd(true)</script>')
+        res.send('<script>window.close(); window.opener.alert("Authentification failed :/");</script>')
     }
     else res.redirect('/')
 }
