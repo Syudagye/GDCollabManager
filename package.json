@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "sass scss/main.scss assets/style.css --watch",
-    "start": "sass scss/main.scss assets/style.css && node index.js",
-    "debug": "node --inspect-brk=9999 index.js"
+    "start-old": "sass scss/main.scss assets/style.css && node index.js",
+    "debug": "node --inspect-brk=9999 index.js",
+    "dev": "webpack & sass src/scss/main.scss build/style.css --watch & nodemon --ignore src/ --ignore views/ --ignore build/ --ignore assets/ index.js",
+    "start": "cross-env-shell NODE_ENV=production \"webpack && node index.js\""
   },
   "author": "Syudagye",
   "license": "ISC",
@@ -15,9 +17,16 @@
     "cookie-parser": "^1.4.5",
     "discord.js": "^12.5.1",
     "express": "^4.17.1",
+    "js-cookie": "^2.2.1",
+    "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "pug": "^3.0.0",
     "request": "^2.88.2",
-    "sass": "^1.30.0"
+    "sass": "^1.32.7",
+    "svelte": "^3.32.3",
+    "svelte-loader": "^3.0.0",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

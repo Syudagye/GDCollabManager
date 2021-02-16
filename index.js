@@ -20,6 +20,7 @@ app.set('view engine', 'pug')
 app.use(cookieparser())
 app.use('/assets', express.static(__dirname + '/assets'))
 app.use('/assets/scss', express.static(__dirname + '/scss'))
+app.use('/assets/build', express.static(__dirname + '/build'))
 
 //routes
 app.get('/', (req, res) => res.render('home'))
