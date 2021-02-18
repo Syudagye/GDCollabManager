@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         index: './src/index.js',
         home: './src/home.js',
-        dashboard: './src/dashboard.js',
+        dashboard: './src/dashboard.js'
     },
     resolve: {
         alias: {
@@ -18,7 +18,7 @@ module.exports = {
     },
 	output: {
 		path: path.join(__dirname, '/build'),
-		filename: '[name].bundle.js',
+		filename: '[name].js',
 		chunkFilename: '[name].[id].js'
 	},
     module: {

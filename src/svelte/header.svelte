@@ -1,6 +1,8 @@
 <script>
     import Svg from './svg.svelte'
     import Account from './account.svelte'
+
+    let mobileMenuOpened = false;
 </script>
 
 <div class="desktop-header">
@@ -10,9 +12,9 @@
     </a>
 
     <nav class="desktop-header__nav">
-        <a class="desktop-header__nav-tab" href="/features">Features</a>
-        <a class="desktop-header__nav-tab" href="/changelog">Changelog</a>
-        <a class="desktop-header__nav-tab" href="/support">Support</a>
+        <a class="desktop-header__nav-tab link" href="/features">Features</a>
+        <a class="desktop-header__nav-tab link" href="/changelog">Changelog</a>
+        <a class="desktop-header__nav-tab link" href="/support">Support</a>
     </nav>
 
     <Account/>
@@ -24,10 +26,21 @@
 </div>
 <div class="mobile-header">
 
-    <button>menu</button><!--TODO: Make a menu for mobile header-->
+    <div class="mobile-header__top">
 
-    <Svg _class="mobile-header__logo" src="/assets/img/logo.svg"/>
+        <button class="mobile-header__button" on:click={() => mobileMenuOpened = !mobileMenuOpened}>
+            <Svg _class="mobile-header__button-icon {mobileMenuOpened ? 'mobile-header__button-icon--cross': ''}" src="/assets/img/menu.svg"/>
+        </button>
+    
+        <Svg _class="mobile-header__logo" src="/assets/img/logo.svg"/>
+    
+        <Account mobile=true/>
 
-    <Account mobile=true/>
+    </div>
 
+    <div class="mobile-header__menu {mobileMenuOpened ? 'mobile-header__menu--opened': ''}">
+        <a class="mobile-header__nav-tab link" href="/features">Features</a>
+        <a class="mobile-header__nav-tab link" href="/changelog">Changelog</a>
+        <a class="mobile-header__nav-tab link" href="/support">Support</a>
+    </div>
 </div>

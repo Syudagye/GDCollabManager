@@ -19,8 +19,6 @@
 }
 .desktop-header__nav-tab{
     margin-left: 40px;
-    text-decoration: none;
-    color: $text-links;
 }
 .desktop-header__settings-button{
     height: 20px;
@@ -37,16 +35,19 @@
     display: none;
     @media only screen and (max-width: 700px){
         display: flex;
-        flex-direction: row;
-        height: 50px;
-        padding: 10px 20px;
-        top: 0;
-        z-index: 200;
-        background-color: $dark-theme-bg;
-        .gdcm--theme-light &{
-            background-color: $white-theme-bg;
-        }
-        filter: drop-shadow(0 10px 5px #0006);
+        flex-direction: column;
+    }
+}
+.mobile-header__top{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    padding: 10px 20px;
+    top: 0;
+    z-index: 200;
+    background-color: $dark-theme-bg;
+    .gdcm--theme-light &{
+        background-color: $white-theme-bg;
     }
 }
 .mobile-header__logo{
@@ -54,4 +55,58 @@
     height: 50px;
     width: 50px;
     margin: 0 auto;
+}
+.mobile-header__button{
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.mobile-header__button-icon{
+    @include svg-gradient(fill);
+    width: 30px;
+    height: 30px;
+    &--cross{
+        .menu-svg__line1{
+            transition: transform .2s;
+            transform: rotate(45deg) translate(2px, -3px);
+        }
+        .menu-svg__line2{
+            transition: opacity .2s;
+            opacity: 0;
+        }
+        .menu-svg__line3{
+            transition: transform .2s;
+            transform: rotate(-45deg) translate(-8px, -1px);
+        }
+    }
+    .menu-svg__line1, .menu-svg__line3{
+        transition: transform .2s;
+    }
+    .menu-svg__line2{
+        transition: opacity .2s;
+    }
+}
+.mobile-header__menu{
+    position: absolute;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    background: #00000056;
+    width: 100%;
+    padding-bottom: 100vh;
+    top: -100px;
+    transition: top .2s ease-in;
+    transition: top .2s ease-out, opacity .2s ease-in;
+    &--opened{
+        opacity: 1;
+        top: 70px;
+        transition: top .2s ease-out, opacity .2s ease-in;
+    }
+}
+.mobile-header__nav-tab{
+    padding: 15px 20px;
+    background-color: $white-theme-bg;
+    .gdcm--theme-dark &{
+        background-color: $dark-theme-bg;
+    }
 }

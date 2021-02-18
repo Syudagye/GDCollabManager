@@ -1,4 +1,5 @@
 <script>
+
     import Svg from './svg.svelte'
 
     export let mobile = false;
@@ -10,14 +11,15 @@
     let avatar;
     let username = 'loading...';
 
-    window.account.userFetch.then(() => {
-        if(window.account.user.avatar === undefined)
-            avatar = `https://cdn.discordapp.com/embed/avatars/${window.account.user.discriminator}.png`
-        if(window.account.user.avatar.startsWith('a_'))
-            avatar = `https://cdn.discordapp.com/avatars/${window.account.user.id}/${window.account.user.avatar}.gif`
-        else
-            avatar = `https://cdn.discordapp.com/avatars/${window.account.user.id}/${window.account.user.avatar}.png`
-        username = window.account.user.username
+    if (window.account.isAuthentified)
+        window.account.userFetch.then(() => {
+            if(window.account.user.avatar === null)
+                avatar = `https://cdn.discordapp.com/embed/avatars/${window.account.user.discriminator % 5}.png`
+            else if(window.account.user.avatar.startsWith('a_'))
+                avatar = `https://cdn.discordapp.com/avatars/${window.account.user.id}/${window.account.user.avatar}.gif`
+            else
+                avatar = `https://cdn.discordapp.com/avatars/${window.account.user.id}/${window.account.user.avatar}.png`
+            username = window.account.user.username
     })
 </script>
 
