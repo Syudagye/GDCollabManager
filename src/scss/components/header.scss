@@ -93,11 +93,11 @@
     flex-direction: column;
     background: #00000056;
     width: 100%;
-    padding-bottom: 100vh;
     top: -100px;
     transition: top .2s ease-in;
     transition: top .2s ease-out, opacity .2s ease-in;
     &--opened{
+        padding-bottom: 100vh;
         opacity: 1;
         top: 70px;
         transition: top .2s ease-out, opacity .2s ease-in;

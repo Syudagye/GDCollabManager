@@ -1,6 +1,13 @@
 <script>
     import Header from './header.svelte'
     import Svg from './svg.svelte'
+
+    function onStartButtonClick() {
+        if (window.account.isAuthentified)
+            window.location.href = "/dashboard"
+        else
+            window.open('/discord_auth', '_blank', 'width=550,height=900,dependent=yes,floating=yes')
+    }
 </script>
 
 <Header/>
@@ -14,7 +21,7 @@
     </div>
 
     <div class="home-page__buttons">
-        <button class="home-page__start-button button">
+        <button on:click={() => onStartButtonClick()} class="home-page__start-button button">
             <span class="button__inner-text">Start</span>
         </button>
         <a class="home-page__learn-more link" href="/">Learn More</a>
