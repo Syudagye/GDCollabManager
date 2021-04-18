@@ -10,6 +10,8 @@ export const Account = readable({
     const tokens = Cookie.getJSON('tokens')
     const isAuthentified = tokens != undefined && tokens != ''
 
+    if(!isAuthentified && window.location.href.endsWith('/dashboard')) return window.location.href = '/'
+
     let user = null
 
     if (isAuthentified) {
