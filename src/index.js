@@ -1,32 +1,13 @@
-import Svg from './svelte/svg.svelte'
-import Cookies from 'js-cookie'
+import Index from './svelte/index.svelte'
+import { Account } from './svelte/stores'
 
-class Account {
-    constructor(tokens){
-        this.tokens = tokens
-        this.isAuthentified = tokens != undefined && tokens != ''
-        if (this.isAuthentified){
-            this.userFetch = fetch('https://discord.com/api/v8/users/@me', {
-                headers: {
-                    'Authorization': `Bearer ${tokens.access_token}`
-                }
-            })
-            .then(res => {return res.json()})
-            .then(user => this.user = user)
-        }
-    }
-}
+let isAuthentified
+Account.subscribe(v => isAuthentified = v.isAuthentified)
 
-window.account = new Account(Cookies.getJSON('tokens'))
+if(!isAuthentified && window.location.href.endsWith('/dashboard')) window.location.href = '/'
 
-if(!account.isAuthentified && window.location.href.endsWith('/dashboard')) window.location.href = '/'
-
-var svg = new Svg({
-    target: document.body,
-    props: {
-        src: "/assets/img/logo_masks.svg",
-        id: "svg__masks"
-    }
+var index = new Index({
+    target: document.body
 })
 
-export default svg
+export default index

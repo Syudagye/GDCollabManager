@@ -1,5 +1,5 @@
 <script>
-
+    import { Account } from './stores'
     import Svg from './svg.svelte'
 
     export let mobile = false;
@@ -8,27 +8,28 @@
         window.open('/discord_auth', '_blank', 'width=550,height=900,dependent=yes,floating=yes')
     }
 
-    let avatar;
-    let username = 'loading...';
+    let avatarUrl
 
-    if (window.account.isAuthentified)
-        window.account.userFetch.then(() => {
-            if(window.account.user.avatar === null)
-                avatar = `https://cdn.discordapp.com/embed/avatars/${window.account.user.discriminator % 5}.png`
-            else if(window.account.user.avatar.startsWith('a_'))
-                avatar = `https://cdn.discordapp.com/avatars/${window.account.user.id}/${window.account.user.avatar}.gif`
+    $: {
+        if($Account.isAuthentified){
+            let avatar = $Account.user.avatar
+            if(avatar === null)
+                avatarUrl = `https://cdn.discordapp.com/embed/avatars/${$Account.user.discriminator % 5}.png`
+            else if(avatar.startsWith('a_'))
+                avatarUrl = `https://cdn.discordapp.com/avatars/${$Account.user.id}/${avatar}.gif`
             else
-                avatar = `https://cdn.discordapp.com/avatars/${window.account.user.id}/${window.account.user.avatar}.png`
-            username = window.account.user.username
-    })
+                avatarUrl = `https://cdn.discordapp.com/avatars/${$Account.user.id}/${avatar}.png`
+        }
+    }
+
 </script>
 
 <div class="account {mobile ? 'account--mobile': ''}">
-    {#if window.account.isAuthentified}
+    {#if $Account.isAuthentified}
 
-        <img class="account__avatar" src="{avatar}" alt="discord avatar">
+        <img class="account__avatar" src="{avatarUrl}" alt="discord avatar">
         {#if !mobile}
-            <span class="account__name">{username}</span>
+            <span class="account__name">{$Account.user.username}</span>
         {/if}
         <Svg _class="account__arrow" src="/assets/img/down_arrow.svg"/>
 
