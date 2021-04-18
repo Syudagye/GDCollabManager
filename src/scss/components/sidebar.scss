@@ -1,0 +1,173 @@
+.dashboard-sidebar{
+    width: 400px;
+}
+.server-selection{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    span{
+        margin-left: 10px;
+        margin-bottom: 20px;
+        color: $text1;
+        font-weight: 800;
+        font-size: 18px;
+    }
+    &__selected-server{
+        cursor: pointer;
+        @include field;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        span{
+            @include text-gradient;
+            font-weight: 800;
+            margin: 0;
+            margin-left: 10px;
+        }
+        svg{
+            @include svg-gradient(fill);
+            margin: auto;
+            margin-right: 30px;
+            width: 10px;
+            height: 10px;
+        }
+    }
+}
+.server-list-popup{
+    cursor: default;
+    @include field;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    z-index: 3;
+    &__topbar{
+        cursor: pointer;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        margin-bottom: 20px;
+        span{
+            @include text-gradient;
+            font-weight: 800;
+            margin: 0;
+            margin-left: 10px;
+        }
+        svg{
+            @include svg-gradient(fill);
+            margin: auto;
+            margin-right: 30px;
+            width: 10px;
+            height: 10px;
+        }
+    }
+    &__add-server{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        svg{
+            @include svg-gradient(fill);
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+        }
+        span{
+            @include text-gradient;
+            font-weight: bold;
+        }
+    }
+}
+.collab-selection{
+    display: flex;
+    flex-direction: column;
+    span{
+        margin-left: 10px;
+        margin-bottom: 20px;
+        color: $text1;
+        font-weight: 800;
+        font-size: 18px;
+    }
+    &__create-collab{
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        svg{
+            fill: $text1;
+            height: 30px;
+            width: 30px;
+            margin: 10px;
+        }
+        span{
+            font-weight: bold;
+            margin: 0;
+            margin-left: 10px;
+        }
+    }
+}
+#collab-list{
+    max-height: 500px;
+    overflow-y: scroll;
+}
+.collab-list-tile {
+    cursor: pointer;
+    width: 310px;
+    max-height: 80px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    &__main-infos{
+        margin-left: 10px;
+    }
+    &__collab-infos{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        margin-right: 0;
+        height: 80px;
+    }
+    &__member-count{
+        svg{
+            @include svg-gradient([stroke fill]);
+        }
+        span{
+            @include text-gradient;
+            margin: 0;
+            margin-left: 5px;
+            font-size: 14px;
+            color: transparent;
+        }
+    }
+    h1 {
+        font-size: 18px;
+        color: $text1;
+        margin-bottom: 10px;
+        width: max-content;
+    }
+    h2{
+        font-size: 14px;
+        font-weight: bold;
+        color: $text2;
+        margin-bottom: 5px;
+        width: max-content;
+    }
+    h3{
+        font-size: 14px;
+        font-style: italic;
+        color: $text2;
+        width: max-content;
+    }
+    &--selected{
+        h1{
+            @include text-gradient;
+        }
+        h2, h3{
+            color: $text1;
+        }
+    }
+    @include selection-indicator(".collab-list-tile--selected");
+}
